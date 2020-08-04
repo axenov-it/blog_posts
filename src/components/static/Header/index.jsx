@@ -4,9 +4,13 @@ import menuLinks from "./menu.json";
 import styles from "./styles.module.css";
 
 function Header() {
+  const { header, header__main } = styles;
+
   return (
-    <header>
-      <Menu links={menuLinks} />
+    <header className={header}>
+      <div className={header__main}>
+        <Menu links={menuLinks} />
+      </div>
     </header>
   );
 }

@@ -4,14 +4,20 @@ import styles from "./styles.module.css";
 
 export default function MenuNav({ links }) {
   return (
-    <ul>
-      {links.map(({ name, href }) => (
-        <li key={href}>
-          <NavLink exact className="nav-link" to={href}>
-            {name}
-          </NavLink>
-        </li>
-      ))}
-    </ul>
+    <nav>
+      <ul className={styles.menu}>
+        {links.map(({ name, href }) => (
+          <li className={styles.menu__item} key={href}>
+            <NavLink
+              exact
+              className={`nav-link ${styles.menu__link}`}
+              to={href}
+            >
+              {name}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }

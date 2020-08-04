@@ -3,8 +3,8 @@ import styles from "./styles.module.css";
 
 function Footer() {
   return (
-    <footer>
-      <h1>Footer component</h1>
+    <footer className={styles.footer}>
+      Web developer Alexandr Axenov 2020
     </footer>
   );
 }
