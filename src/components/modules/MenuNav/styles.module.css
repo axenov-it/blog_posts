@@ -1,0 +1,12 @@
+.menu {
+  display: flex;
+  margin: 0 -15px;
+}
+
+.menu__link {
+  padding: 5px 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: black;
+  font-size: 25px;
+}
