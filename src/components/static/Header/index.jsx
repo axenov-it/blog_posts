@@ -1,5 +1,5 @@
 import React from "react";
-import Menu from "../../modules/MenuNav";
+import Menu from "./components/MenuNav";
 import menuLinks from "./menu.json";
 import styles from "./styles.module.css";
 
