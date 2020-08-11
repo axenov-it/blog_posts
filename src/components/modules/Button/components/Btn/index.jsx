@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 
 function Btn({ className, onClick, title }) {
   return (
-    <button onClick={onClick} className={styles[className]}>
+    <button type="button" onClick={onClick} className={styles[className]}>
       {title}
     </button>
   );

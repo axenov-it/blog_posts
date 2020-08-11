@@ -1,13 +1,30 @@
-.btn__add {
-  background: blue;
-  color: #fff;
+.btn__add,
+.btn__create,
+.btn__cancel {
   border: none;
   padding: 5px 15px;
+
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
 }
 
+.btn__add,
+.btn__create {
+  background: blue;
+  color: #fff;
+}
+
 .btn__add:hover {
   background: #0078ff;
+}
+
+.btn__cancel {
+  background: red;
+  color: #fff;
+}
+
+.btn__cancel,
+.btn__create {
+  margin-right: 5px;
 }
