@@ -1,0 +1,26 @@
+.addPostForm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ccccccb3;
+}
+
+.addPostForm__container {
+  max-width: 500px;
+  border: 1px solid rgb(212, 193, 193);
+  display: flex;
+  margin: 100px auto;
+  flex-wrap: wrap;
+  padding: 15px;
+  background: #fff;
+}
+
+.addPostForm__input,
+.addPostForm__textarea {
+  margin-bottom: 15px;
+  padding: 5px;
+  font-size: 18px;
+  width: 100%;
+}
