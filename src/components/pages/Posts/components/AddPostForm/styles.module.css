@@ -16,11 +16,3 @@
   padding: 15px;
   background: #fff;
 }
-
-.addPostForm__input,
-.addPostForm__textarea {
-  margin-bottom: 15px;
-  padding: 5px;
-  font-size: 18px;
-  width: 100%;
-}

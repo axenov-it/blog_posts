@@ -19,8 +19,15 @@ function Posts() {
     });
   }, []);
 
-  const onAddFormSubmit = () => {
-    console.log("MY FORM");
+  const onAddFormSubmit = (fields, isValidForm) => {
+    console.log("MY FORM", fields, isValidForm);
+
+    const fetchFields = fields.reduce((ac, field) => {
+      ac[field.name] = field.value;
+      return ac;
+    }, {});
+
+    RequestApi.addPost(fetchFields);
   };
 
   const onShowForm = () => {

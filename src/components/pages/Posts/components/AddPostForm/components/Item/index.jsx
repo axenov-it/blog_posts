@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 function Item({
   name,
   type,
+  value,
   placeholder,
   onChange,
   className,
@@ -15,6 +16,7 @@ function Item({
     type === "description" ? (
       <textarea
         name={name}
+        value={value}
         placeholder={placeholder}
         onChange={onChange}
         className={styles[className]}
@@ -23,6 +25,7 @@ function Item({
       <input
         name={name}
         type={type}
+        value={value}
         placeholder={placeholder}
         onChange={onChange}
         className={styles[className]}
@@ -30,7 +33,7 @@ function Item({
     );
 
   return (
-    <div>
+    <div className={styles.form__row}>
       {inputComponent}
       {!isValid && <span>{errorText}</span>}
     </div>
@@ -42,6 +45,7 @@ Item.propTypes = {
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   isValid: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   className: PropTypes.string,
   errorText: PropTypes.string,

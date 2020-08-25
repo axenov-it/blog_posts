@@ -6,7 +6,8 @@
     "regex": "^[0-9a-zA-Z\\s]{5,50}$",
     "className": "form__field",
     "errorText": "Incorect title value",
-    "isValid": true
+    "isValid": true,
+    "value": "Example title 1"
   },
   {
     "name": "short_description",
@@ -15,6 +16,7 @@
     "regex": "^[0-9a-zA-Z\\s]{5,200}$",
     "className": "form__field",
     "errorText": "Incorect short decription value",
-    "isValid": true
+    "isValid": true,
+    "value": "Example short description 1"
   }
 ]

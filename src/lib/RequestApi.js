@@ -1,4 +1,5 @@
 import Request from "./Request";
+import PostFetch from "./PostFetch";
 
 /**
  * Request blog Api class
@@ -16,8 +17,11 @@ class RequestApi {
     return new Request(`posts/${postId}`).setMethod("DELETE").send();
   }
 
-  static addPost(post) {
-    return new Request(`posts`).setMethod("POST").setBody(post).send();
+  static addPost(fields) {
+    console.log("--------------------------", fields);
+    const postFetch = new PostFetch(fields);
+
+    return new Request(`posts`).setMethod("POST").setBody(postFetch).send();
   }
 
   static updatePost(post, postId) {
