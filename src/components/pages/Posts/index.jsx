@@ -1,42 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import styles from "./styles.module.css";
-import RequestApi from "../../../lib/RequestApi";
+
 import List from "./components/List";
 import Button from "../../modules/Button";
 import AddPostForm from "./components/AddPostForm";
+import { fetchPostsAction, fetchAddPostAction } from "./redux/asyncActions";
 
-function Posts() {
-  const [state, setState] = useState({
-    posts: [],
-    isShowAddPostForm: false,
-  });
+function Posts(props) {
+  const { fetchPosts, fetchAddPost } = props;
+
+  const [isShowAddForm, setIsShowAddForm] = useState(false);
 
   useEffect(() => {
-    RequestApi.getPosts().then((data) => {
-      if (data.result) {
-        setState({ ...state, posts: data.posts });
-      }
-    });
+    fetchPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onAddFormSubmit = (fields, isValidForm) => {
-    console.log("MY FORM", fields, isValidForm);
-
-    const fetchFields = fields.reduce((ac, field) => {
-      ac[field.name] = field.value;
-      return ac;
-    }, {});
-
-    RequestApi.addPost(fetchFields);
-  };
-
-  const onShowForm = () => {
-    setState({ ...state, isShowAddPostForm: !state.isShowAddPostForm });
-  };
-
-  const onCancelForm = () => {
-    setState({ ...state, isShowAddPostForm: false });
-  };
+  const toggleAddForm = () => setIsShowAddForm(!isShowAddForm);
 
   return (
     <div className={styles.posts}>
@@ -46,17 +27,24 @@ function Posts() {
           type="btn"
           title="Add post"
           className="btn__add"
-          onClick={onShowForm}
+          onClick={toggleAddForm}
         />
       </div>
-      <List posts={state.posts} />
+      <List />
       <AddPostForm
-        isShow={state.isShowAddPostForm}
-        onSubmit={onAddFormSubmit}
-        onCancel={onCancelForm}
+        isShow={isShowAddForm}
+        onSubmit={fetchAddPost}
+        onCancel={toggleAddForm}
       />
     </div>
   );
 }
 
-export default Posts;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPosts: () => fetchPostsAction(dispatch),
+    fetchAddPost: (fields) => fetchAddPostAction(fields, dispatch),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Posts);
