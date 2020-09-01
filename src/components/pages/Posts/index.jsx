@@ -19,6 +19,12 @@ function Posts(props) {
 
   const toggleAddForm = () => setIsShowAddForm(!isShowAddForm);
 
+  const submitAddPostForm = (fields) => {
+    fetchAddPost(fields).then(() => {
+      toggleAddForm();
+    });
+  };
+
   return (
     <div className={styles.posts}>
       <div className={styles.posts__nav}>
@@ -33,7 +39,7 @@ function Posts(props) {
       <List />
       <AddPostForm
         isShow={isShowAddForm}
-        onSubmit={fetchAddPost}
+        onSubmit={submitAddPostForm}
         onCancel={toggleAddForm}
       />
     </div>

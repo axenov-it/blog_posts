@@ -5,11 +5,14 @@ import { getDateFromLocale } from "../../../../../lib/helpers";
 import styles from "./styles.module.css";
 
 function Post({ id, title, shortDescription, dateUpdate }) {
-  const { post, post__title, post__desctiption } = styles;
+  const { post, post__edit, post__title, post__desctiption } = styles;
 
   return (
     <div className={post}>
       <span>{getDateFromLocale(dateUpdate.date)}</span>
+      <span className={post__edit}>
+        <Link to={`/post/edit/${id}`}>Edit</Link>
+      </span>
       <h2 className={post__title}>
         <Link to={`/post/${id}`}>{title}</Link>
       </h2>

@@ -4,12 +4,16 @@ import styles from "./styles.module.css";
 import Button from "../../../../modules/Button";
 import List from "./components/List";
 import dataFieds from "./fields.json";
+import { useEffect } from "react";
 
 function AddPostForm({ isShow, onSubmit, onCancel }) {
   const [fields, setFields] = useState(dataFieds);
 
-  const onCloseForm = () => {
+  useEffect(() => {
     setFields(dataFieds);
+  }, [isShow]);
+
+  const onCloseForm = () => {
     onCancel();
   };
 

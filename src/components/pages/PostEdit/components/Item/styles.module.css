@@ -1,0 +1,12 @@
+.form__row {
+  margin-bottom: 15px;
+  padding: 5px;
+  font-size: 18px;
+  width: 100%;
+}
+
+.form__field {
+  width: 100%;
+  padding: 5px;
+  font-size: 18px;
+}

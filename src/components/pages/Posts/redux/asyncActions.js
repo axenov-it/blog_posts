@@ -15,7 +15,12 @@ export const fetchAddPostAction = (fields, dispatch) => {
     return ac;
   }, {});
 
-  return RequestApi.addPost(fetchFields).then(() => {
-    fetchPostsAction(dispatch);
+  return RequestApi.addPost(fetchFields).then((response) => {
+    console.log("eeee", response);
+    if (response.result) {
+      fetchPostsAction(dispatch);
+      return true;
+    }
+    return false;
   });
 };
