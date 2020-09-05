@@ -1,0 +1,9 @@
+.postEdit__edit,
+.postEdit__checkbox {
+  margin-left: auto;
+}
+
+.postEdit__form {
+  display: flex;
+  flex-wrap: wrap;
+}

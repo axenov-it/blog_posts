@@ -16,6 +16,7 @@ function Post(props) {
         setState({ ...state, post: data.post });
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { title, full_description, short_description } = state.post;

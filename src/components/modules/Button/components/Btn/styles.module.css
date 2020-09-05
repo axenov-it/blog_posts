@@ -1,6 +1,8 @@
 .btn__add,
 .btn__create,
-.btn__cancel {
+.btn__save,
+.btn__cancel,
+.btn__disable {
   border: none;
   padding: 5px 15px;
 
@@ -10,9 +12,15 @@
 }
 
 .btn__add,
-.btn__create {
+.btn__create,
+.btn__save {
   background: blue;
   color: #fff;
+}
+
+.btn__disable {
+  background: #9f9fb0;
+  cursor: not-allowed;
 }
 
 .btn__add:hover {

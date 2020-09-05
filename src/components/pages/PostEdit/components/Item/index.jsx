@@ -11,6 +11,7 @@ function Item({
   className,
   errorText,
   isValid,
+  classCheckboxName,
 }) {
   let inputComponent = null;
 
@@ -32,7 +33,7 @@ function Item({
         checked={value}
         placeholder={placeholder}
         onChange={onChange}
-        className={styles[className]}
+        className={`${styles[className]} ${classCheckboxName}`}
       />
     );
   } else {
@@ -56,6 +57,10 @@ function Item({
   );
 }
 
+Item.defaultProps = {
+  classCheckboxName: "",
+};
+
 Item.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -69,6 +74,7 @@ Item.propTypes = {
   placeholder: PropTypes.string,
   className: PropTypes.string,
   errorText: PropTypes.string,
+  classCheckboxName: PropTypes.string,
 };
 
 export default Item;

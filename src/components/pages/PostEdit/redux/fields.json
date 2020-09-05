@@ -34,7 +34,7 @@
     "type": "checkbox",
     "placeholder": "Enter short description",
     "regex": "^[0-9a-zA-Z\\s]{5,200}$",
-    "className": "form__field",
+    "className": "form__checkbox",
     "errorText": "Incorect short decription value",
     "isValid": true,
     "value": ""
