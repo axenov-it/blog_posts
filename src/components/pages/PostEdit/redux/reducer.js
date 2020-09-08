@@ -1,8 +1,20 @@
-import { SET_EDIT_POST, CHANGE_FIELD_VALUE } from "./actionsTypes";
+import {
+  SET_EDIT_POST,
+  CHANGE_FIELD_VALUE,
+  SHOW_SUCCESS_MESSAGE,
+  UPDATED_FORM,
+} from "./actionsTypes";
 import fields from "./fields.json";
 
 const initialState = {
   fields,
+  isEdit: false,
+  isShowSuccessMesage: false,
+};
+
+const onValidatePost = (value, regex) => {
+  const regExp = new RegExp(regex);
+  return regExp.test(value);
 };
 
 export default function (state = initialState, action) {
@@ -19,6 +31,21 @@ export default function (state = initialState, action) {
       };
     }
 
+    case SHOW_SUCCESS_MESSAGE: {
+      return {
+        ...state,
+        isShowSuccessMesage: action.status,
+      };
+    }
+
+    case UPDATED_FORM: {
+      return {
+        ...state,
+        isEdit: false,
+        isShowSuccessMesage: false,
+      };
+    }
+
     case CHANGE_FIELD_VALUE: {
       return {
         ...state,
@@ -27,10 +54,14 @@ export default function (state = initialState, action) {
             return {
               ...field,
               value: action.value,
+              isValid: field.regex
+                ? onValidatePost(action.value, field.regex)
+                : true,
             };
           }
           return field;
         }),
+        isEdit: true,
       };
     }
 

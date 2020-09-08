@@ -52,7 +52,7 @@ function Item({
   return (
     <div className={styles.form__row}>
       {inputComponent}
-      {!isValid && <span>{errorText}</span>}
+      {!isValid && <span className={styles.form__error}>{errorText}</span>}
     </div>
   );
 }

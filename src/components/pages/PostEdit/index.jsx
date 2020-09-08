@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchPostAction } from "./redux/asyncActions";
+import { fetchPostAction, fetchUpdatePostAction } from "./redux/asyncActions";
 import { changeFieldValueAction } from "./redux/actionsTypes";
 import Button from "../../modules/Button";
 
@@ -10,8 +10,14 @@ import styles from "./styles.module.css";
 
 function PostEdit(props) {
   const postId = props.match.params.id;
-  const { fetchPost, fields, changeFieldValue } = props;
-  const isEdit = false;
+  const {
+    fetchPost,
+    fetchUpdatePost,
+    fields,
+    changeFieldValue,
+    isEdit,
+    isShowSuccessMesage,
+  } = props;
 
   useEffect(() => {
     fetchPost(postId);
@@ -29,9 +35,20 @@ function PostEdit(props) {
     changeFieldValue(value, event.target.name);
   };
 
+  const onSubmit = () => {
+    const isNotValidForm = fields.find((field) => !field.isValid);
+
+    if (!isEdit || isNotValidForm) return null;
+
+    fetchUpdatePost(fields, postId);
+  };
+
   return (
     <div className={styles.postEdit__form}>
       <h1>Edit post</h1>
+      {isShowSuccessMesage && (
+        <div className={styles.postEdit__success}>Your post updated !</div>
+      )}
       <List
         fields={fields}
         onChange={onChangeField}
@@ -40,7 +57,7 @@ function PostEdit(props) {
       <Button
         title="Save post"
         type="btn"
-        onClick={() => console.log(1)}
+        onClick={onSubmit}
         style={styles.postEdit__edit}
         className={classNameBtn}
       />
@@ -53,6 +70,11 @@ const mapDispatchToProps = (dispatch) => {
     fetchPost: (postId) => {
       fetchPostAction(dispatch, postId);
     },
+
+    fetchUpdatePost: (fields, postId) => {
+      fetchUpdatePostAction(dispatch, fields, postId);
+    },
+
     changeFieldValue: (value, name) =>
       dispatch(changeFieldValueAction(value, name)),
   };
@@ -61,6 +83,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     fields: state.postEdit.fields,
+    isEdit: state.postEdit.isEdit,
+    isShowSuccessMesage: state.postEdit.isShowSuccessMesage,
   };
 };
 
