@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchPostAction, fetchUpdatePostAction } from "./redux/asyncActions";
 import { changeFieldValueAction } from "./redux/actionsTypes";
 import Button from "../../modules/Button";
+import Alert from "../../modules/Alert";
 
 import List from "./components/List";
 
@@ -10,6 +11,7 @@ import styles from "./styles.module.css";
 
 function PostEdit(props) {
   const postId = props.match.params.id;
+
   const {
     fetchPost,
     fetchUpdatePost,
@@ -17,6 +19,7 @@ function PostEdit(props) {
     changeFieldValue,
     isEdit,
     isShowSuccessMesage,
+    isShowErrorMesage,
   } = props;
 
   useEffect(() => {
@@ -35,20 +38,24 @@ function PostEdit(props) {
     changeFieldValue(value, event.target.name);
   };
 
-  const onSubmit = () => {
-    const isNotValidForm = fields.find((field) => !field.isValid);
-
-    if (!isEdit || isNotValidForm) return null;
-
-    fetchUpdatePost(fields, postId);
-  };
+  const onSubmit = () => fetchUpdatePost(fields, postId, isEdit);
 
   return (
     <div className={styles.postEdit__form}>
       <h1>Edit post</h1>
-      {isShowSuccessMesage && (
-        <div className={styles.postEdit__success}>Your post updated !</div>
-      )}
+
+      <Alert
+        message={"Your post updated !"}
+        isShow={isShowSuccessMesage}
+        className={"alert__success"}
+      />
+
+      <Alert
+        message={"Enter correct data !"}
+        isShow={isShowErrorMesage}
+        className={"alert__error"}
+      />
+
       <List
         fields={fields}
         onChange={onChangeField}
@@ -71,8 +78,8 @@ const mapDispatchToProps = (dispatch) => {
       fetchPostAction(dispatch, postId);
     },
 
-    fetchUpdatePost: (fields, postId) => {
-      fetchUpdatePostAction(dispatch, fields, postId);
+    fetchUpdatePost: (fields, postId, isEdit) => {
+      fetchUpdatePostAction(dispatch, fields, postId, isEdit);
     },
 
     changeFieldValue: (value, name) =>
@@ -85,6 +92,7 @@ const mapStateToProps = (state) => {
     fields: state.postEdit.fields,
     isEdit: state.postEdit.isEdit,
     isShowSuccessMesage: state.postEdit.isShowSuccessMesage,
+    isShowErrorMesage: state.postEdit.isShowErrorMesage,
   };
 };
 

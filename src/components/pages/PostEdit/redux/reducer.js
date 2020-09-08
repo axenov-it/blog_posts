@@ -2,6 +2,7 @@ import {
   SET_EDIT_POST,
   CHANGE_FIELD_VALUE,
   SHOW_SUCCESS_MESSAGE,
+  SHOW_ERROR_MESSAGE,
   UPDATED_FORM,
 } from "./actionsTypes";
 import fields from "./fields.json";
@@ -10,6 +11,7 @@ const initialState = {
   fields,
   isEdit: false,
   isShowSuccessMesage: false,
+  isShowErrorMesage: false,
 };
 
 const onValidatePost = (value, regex) => {
@@ -35,6 +37,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isShowSuccessMesage: action.status,
+      };
+    }
+
+    case SHOW_ERROR_MESSAGE: {
+      return {
+        ...state,
+        isShowErrorMesage: action.status,
       };
     }
 
