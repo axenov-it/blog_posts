@@ -4,7 +4,7 @@ import { setPostsAction } from "./actionsTypes";
 export const fetchPostsAction = (dispatch) => {
   RequestApi.getPosts().then((data) => {
     if (data.result) {
-      setPostsAction(data.posts, dispatch);
+      dispatch(setPostsAction(data.posts));
     }
   });
 };

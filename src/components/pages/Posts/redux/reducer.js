@@ -1,6 +1,6 @@
 import { SET_POSTS } from "./actionsTypes";
 
-const initialState = {
+export const initialState = {
   list: [],
   isShowAddForm: false,
 };

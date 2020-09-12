@@ -7,7 +7,7 @@ import {
 } from "./actionsTypes";
 import fields from "./fields.json";
 
-const initialState = {
+export const initialState = {
   fields,
   isEdit: false,
   isShowSuccessMesage: false,
