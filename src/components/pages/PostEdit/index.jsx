@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchPostAction, fetchUpdatePostAction } from "./redux/asyncActions";
+import {
+  fetchPostAction,
+  fetchUpdatePostAction,
+  fetchDeletePostAction,
+} from "./redux/asyncActions";
 import { changeFieldValueAction } from "./redux/actionsTypes";
 import Button from "../../modules/Button";
 import Alert from "../../modules/Alert";
@@ -20,6 +25,7 @@ function PostEdit(props) {
     isEdit,
     isShowSuccessMesage,
     isShowErrorMesage,
+    history,
   } = props;
 
   useEffect(() => {
@@ -38,7 +44,16 @@ function PostEdit(props) {
     changeFieldValue(value, event.target.name);
   };
 
-  const onSubmit = () => fetchUpdatePost(fields, postId, isEdit);
+  const onSubmitEdit = () => fetchUpdatePost(fields, postId, isEdit);
+
+  const onSubmitDelete = () => {
+    // eslint-disable-next-line no-restricted-globals
+    const isDelete = confirm("Do you want delete this post?");
+
+    if (!isDelete) return false;
+
+    fetchDeletePostAction(postId, history);
+  };
 
   return (
     <div className={styles.postEdit__form}>
@@ -64,9 +79,16 @@ function PostEdit(props) {
       <Button
         title="Save post"
         type="btn"
-        onClick={onSubmit}
+        onClick={onSubmitEdit}
         style={styles.postEdit__edit}
         className={classNameBtn}
+      />
+      <Button
+        title="Delete post"
+        type="btn"
+        onClick={onSubmitDelete}
+        style={styles.postEdit__delete}
+        className={"btn__delete"}
       />
     </div>
   );
@@ -94,6 +116,16 @@ const mapStateToProps = (state) => {
     isShowSuccessMesage: state.postEdit.isShowSuccessMesage,
     isShowErrorMesage: state.postEdit.isShowErrorMesage,
   };
+};
+
+PostEdit.propTypes = {
+  fields: PropTypes.array.isRequired,
+  fetchPost: PropTypes.func.isRequired,
+  fetchUpdatePost: PropTypes.func.isRequired,
+  changeFieldValue: PropTypes.func.isRequired,
+  isEdit: PropTypes.bool.isRequired,
+  isShowSuccessMesage: PropTypes.bool.isRequired,
+  isShowErrorMesage: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostEdit);

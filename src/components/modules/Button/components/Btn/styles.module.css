@@ -2,7 +2,8 @@
 .btn__create,
 .btn__save,
 .btn__cancel,
-.btn__disable {
+.btn__disable,
+.btn__delete {
   border: none;
   padding: 5px 15px;
 
@@ -27,7 +28,8 @@
   background: #0078ff;
 }
 
-.btn__cancel {
+.btn__cancel,
+.btn__delete {
   background: red;
   color: #fff;
 }

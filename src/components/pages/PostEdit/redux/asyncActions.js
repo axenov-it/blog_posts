@@ -14,6 +14,14 @@ export const fetchPostAction = (dispatch, postId) => {
   });
 };
 
+export const fetchDeletePostAction = (postId, history) => {
+  return RequestApi.deletePost(postId).then((data) => {
+    if (data.result) {
+      history.push("/");
+    }
+  });
+};
+
 function isValidEditForm(fields, isEdit) {
   if (!isEdit) return false;
 
