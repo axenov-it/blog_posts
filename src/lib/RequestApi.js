@@ -5,8 +5,8 @@ import PostFetch from "./PostFetch";
  * Request blog Api class
  */
 class RequestApi {
-  static getPosts() {
-    return new Request("posts").send();
+  static getPosts(page = 1, limit = 10) {
+    return new Request("posts").setParams({ page, limit }).send();
   }
 
   static getPost(postId) {

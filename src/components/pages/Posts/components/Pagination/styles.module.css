@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pagination__btnLeft,
+.pagination__btnRight {
+  background: #ccc;
+  display: block;
+  padding: 5px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination__page {
+  text-align: center;
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  width: 50px;
+  border: 1px solid;
+}

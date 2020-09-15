@@ -1,9 +1,10 @@
 import RequestApi from "../../../../lib/RequestApi";
-import { setPostsAction } from "./actionsTypes";
+import { setPostsAction, changePaginationAction } from "./actionsTypes";
 
-export const fetchPostsAction = (dispatch) => {
-  RequestApi.getPosts().then((data) => {
+export const fetchPostsAction = (dispatch, page, limit) => {
+  RequestApi.getPosts(page, limit).then((data) => {
     if (data.result) {
+      dispatch(changePaginationAction({ page, limit }));
       dispatch(setPostsAction(data.posts));
     }
   });
@@ -18,7 +19,7 @@ export const fetchAddPostAction = (fields, dispatch) => {
   return RequestApi.addPost(fetchFields).then((response) => {
     console.log("eeee", response);
     if (response.result) {
-      fetchPostsAction(dispatch);
+      fetchPostsAction(dispatch, 1, 12);
       return true;
     }
     return false;

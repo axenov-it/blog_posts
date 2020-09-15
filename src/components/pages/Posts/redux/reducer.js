@@ -1,8 +1,12 @@
-import { SET_POSTS } from "./actionsTypes";
+import { SET_POSTS, CHANGE_PAGINATION } from "./actionsTypes";
 
 export const initialState = {
   list: [],
   isShowAddForm: false,
+  pagination: {
+    page: 1,
+    limit: 12,
+  },
 };
 
 export default function (state = initialState, action) {
@@ -11,6 +15,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         list: action.posts,
+      };
+    }
+
+    case CHANGE_PAGINATION: {
+      return {
+        ...state,
+        pagination: { ...state.pagination, ...action.pagination },
       };
     }
 
