@@ -10,6 +10,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header />
+
         <main className={styles.app__main}>
           <Router />
         </main>

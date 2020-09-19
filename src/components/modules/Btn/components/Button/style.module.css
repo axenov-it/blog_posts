@@ -1,0 +1,15 @@
+.btn__largeSuccess,
+.btn__largeDelete {
+  font-size: 20px;
+  color: white;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.btn__largeSuccess {
+  background: greenyellow;
+}
+
+.btn__largeDelete {
+  background: red;
+}
