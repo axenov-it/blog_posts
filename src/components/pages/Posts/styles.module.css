@@ -4,3 +4,18 @@
   padding: 0 15px;
   align-items: center;
 }
+
+.posts__loading {
+  position: fixed;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  display: block;
+  background: #ccc;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  opacity: 0.8;
+  font-weight: bold;
+  font-size: 20px;
+}
